@@ -9,6 +9,9 @@ package io.camunda.zeebe.engine.state.appliers;
 
 import io.camunda.zeebe.engine.scaling.ScaledUpApplier;
 import io.camunda.zeebe.engine.scaling.ScalingUpApplier;
+import io.camunda.zeebe.engine.scaling.redistribution.RedistributionCompletedApplier;
+import io.camunda.zeebe.engine.scaling.redistribution.RedistributionContinuedApplier;
+import io.camunda.zeebe.engine.scaling.redistribution.RedistributionStartedApplier;
 import io.camunda.zeebe.engine.state.EventApplier;
 import io.camunda.zeebe.engine.state.EventApplier.NoSuchEventApplier.NoApplierForIntent;
 import io.camunda.zeebe.engine.state.EventApplier.NoSuchEventApplier.NoApplierForVersion;
@@ -56,6 +59,7 @@ import io.camunda.zeebe.protocol.record.intent.UserIntent;
 import io.camunda.zeebe.protocol.record.intent.UserTaskIntent;
 import io.camunda.zeebe.protocol.record.intent.VariableDocumentIntent;
 import io.camunda.zeebe.protocol.record.intent.VariableIntent;
+import io.camunda.zeebe.protocol.record.intent.scaling.RedistributionIntent;
 import io.camunda.zeebe.protocol.record.intent.scaling.ScaleIntent;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -484,6 +488,9 @@ public final class EventAppliers implements EventApplier {
   private void registerScalingAppliers(final MutableProcessingState state) {
     register(ScaleIntent.SCALING_UP, new ScalingUpApplier(state.getRoutingState()));
     register(ScaleIntent.SCALED_UP, new ScaledUpApplier(state.getRoutingState()));
+    register(RedistributionIntent.STARTED, new RedistributionStartedApplier(state));
+    register(RedistributionIntent.CONTINUED, new RedistributionContinuedApplier(state));
+    register(RedistributionIntent.COMPLETED, new RedistributionCompletedApplier(state));
   }
 
   private void registerTenantAppliers(final MutableProcessingState state) {
