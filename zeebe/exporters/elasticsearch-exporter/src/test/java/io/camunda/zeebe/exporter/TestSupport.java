@@ -134,6 +134,7 @@ final class TestSupport {
             ValueType.PROCESS_INSTANCE_RESULT,
             ValueType.CLOCK,
             ValueType.SCALE,
+            ValueType.REDISTRIBUTION,
             // these are not yet supported
             ValueType.ROLE,
             ValueType.TENANT,
