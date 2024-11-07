@@ -25,8 +25,8 @@ import io.camunda.exporter.handlers.EventFromJobHandler;
 import io.camunda.exporter.handlers.EventFromProcessInstanceHandler;
 import io.camunda.exporter.handlers.EventFromProcessMessageSubscriptionHandler;
 import io.camunda.exporter.handlers.ExportHandler;
-import io.camunda.exporter.handlers.FlowNodeInstanceIncidentHandler;
-import io.camunda.exporter.handlers.FlowNodeInstanceProcessInstanceHandler;
+import io.camunda.exporter.handlers.FlowNodeInstanceFromIncidentHandler;
+import io.camunda.exporter.handlers.FlowNodeInstanceFromProcessInstanceHandler;
 import io.camunda.exporter.handlers.FormHandler;
 import io.camunda.exporter.handlers.IncidentHandler;
 import io.camunda.exporter.handlers.ListViewFlowNodeFromIncidentHandler;
@@ -188,9 +188,9 @@ public class DefaultExporterResourceProvider implements ExporterResourceProvider
                 indexDescriptorsMap.get(DecisionRequirementsIndex.class).getFullQualifiedName()),
             new PostImporterQueueFromIncidentHandler(
                 templateDescriptorsMap.get(PostImporterQueueTemplate.class).getFullQualifiedName()),
-            new FlowNodeInstanceIncidentHandler(
+            new FlowNodeInstanceFromIncidentHandler(
                 templateDescriptorsMap.get(FlowNodeInstanceTemplate.class).getFullQualifiedName()),
-            new FlowNodeInstanceProcessInstanceHandler(
+            new FlowNodeInstanceFromProcessInstanceHandler(
                 templateDescriptorsMap.get(FlowNodeInstanceTemplate.class).getFullQualifiedName()),
             new IncidentHandler(
                 templateDescriptorsMap.get(IncidentTemplate.class).getFullQualifiedName(),
