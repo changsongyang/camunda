@@ -8,6 +8,7 @@
 package io.camunda.db.rdbms;
 
 import io.camunda.db.rdbms.read.service.DecisionDefinitionReader;
+import io.camunda.db.rdbms.read.service.DecisionInstanceReader;
 import io.camunda.db.rdbms.read.service.DecisionRequirementsReader;
 import io.camunda.db.rdbms.read.service.FlowNodeInstanceReader;
 import io.camunda.db.rdbms.read.service.ProcessDefinitionReader;
@@ -16,11 +17,14 @@ import io.camunda.db.rdbms.read.service.VariableReader;
 import io.camunda.db.rdbms.write.RdbmsWriter;
 import io.camunda.db.rdbms.write.RdbmsWriterFactory;
 
-/** A holder for all rdbms services */
+/**
+ * A holder for all rdbms services
+ */
 public class RdbmsService {
 
   private final RdbmsWriterFactory rdbmsWriterFactory;
   private final DecisionDefinitionReader decisionDefinitionReader;
+  private final DecisionInstanceReader decisionInstanceReader;
   private final DecisionRequirementsReader decisionRequirementsReader;
   private final FlowNodeInstanceReader flowNodeInstanceReader;
   private final ProcessDefinitionReader processDefinitionReader;
@@ -30,6 +34,7 @@ public class RdbmsService {
   public RdbmsService(
       final RdbmsWriterFactory rdbmsWriterFactory,
       final DecisionDefinitionReader decisionDefinitionReader,
+      final DecisionInstanceReader decisionInstanceReader,
       final DecisionRequirementsReader decisionRequirementsReader,
       final FlowNodeInstanceReader flowNodeInstanceReader,
       final ProcessDefinitionReader processDefinitionReader,
@@ -38,6 +43,7 @@ public class RdbmsService {
     this.rdbmsWriterFactory = rdbmsWriterFactory;
     this.decisionRequirementsReader = decisionRequirementsReader;
     this.decisionDefinitionReader = decisionDefinitionReader;
+    this.decisionInstanceReader = decisionInstanceReader;
     this.flowNodeInstanceReader = flowNodeInstanceReader;
     this.processDefinitionReader = processDefinitionReader;
     this.processInstanceReader = processInstanceReader;
@@ -46,6 +52,10 @@ public class RdbmsService {
 
   public DecisionDefinitionReader getDecisionDefinitionReader() {
     return decisionDefinitionReader;
+  }
+
+  public DecisionInstanceReader getDecisionInstanceReader() {
+    return decisionInstanceReader;
   }
 
   public DecisionRequirementsReader getDecisionRequirementsReader() {

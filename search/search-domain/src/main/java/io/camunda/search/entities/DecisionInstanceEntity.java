@@ -11,26 +11,30 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 public record DecisionInstanceEntity(
-    long key,
+    Long key,
     DecisionInstanceState state,
     OffsetDateTime evaluationDate,
     String evaluationFailure,
-    long processDefinitionKey,
-    long processInstanceKey,
+    Long processDefinitionKey,
+    Long processInstanceKey,
     String bpmnProcessId,
     String decisionId,
     String decisionDefinitionId,
     String decisionName,
-    int decisionVersion,
+    Integer decisionVersion,
     DecisionDefinitionType decisionType,
     String result,
     List<DecisionInstanceInputEntity> evaluatedInputs,
     List<DecisionInstanceOutputEntity> evaluatedOutputs) {
 
-  public record DecisionInstanceInputEntity(String id, String name, String value) {}
+  public record DecisionInstanceInputEntity(String id, String name, String value) {
+
+  }
 
   public record DecisionInstanceOutputEntity(
-      String id, String name, String value, String ruleId, int ruleIndex) {}
+      String id, String name, String value, String ruleId, int ruleIndex) {
+
+  }
 
   public enum DecisionDefinitionType {
     DECISION_TABLE,
