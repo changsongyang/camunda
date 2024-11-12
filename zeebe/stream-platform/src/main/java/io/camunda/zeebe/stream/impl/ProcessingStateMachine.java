@@ -644,7 +644,10 @@ public final class ProcessingStateMachine {
             // incremented by 1 for one record (even in a batch), so we can count the amount
             // of written records via the lastWritten and now written position.
             final var lastProcessedCommandPosition =
-                writtenPosition - pendingWrites.size() + lastProcessedCommandIndex + 1;
+                Math.max(typedCommand.getPosition(), writtenPosition)
+                    - pendingWrites.size()
+                    + lastProcessedCommandIndex
+                    + 1;
             finalizeCommandProcessing(lastProcessedCommandPosition);
 
             final var amount = writtenPosition - lastWrittenPosition;
